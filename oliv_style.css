@@ -1,0 +1,398 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.page.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.birthday-box, .sorry-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 1s ease-out;
+}
+
+h1 {
+    color: #764ba2;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #764ba2;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #555;
+    font-size: 1.2rem;
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.heart {
+    font-size: 3rem;
+    margin: 20px 0;
+    animation: heartbeat 2s infinite;
+}
+
+.next-button, .press-me-button {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.press-me-button {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    font-size: 1.5rem;
+    padding: 20px 40px;
+    animation: pulse 2s infinite;
+}
+
+.next-button:hover, .press-me-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Cake Design */
+.cake-container {
+    margin: 40px 0;
+    position: relative;
+    display: inline-block;
+}
+
+.cake {
+    position: relative;
+    margin: 0 auto;
+    animation: cakeFloat 3s ease-in-out infinite;
+}
+
+.cake-layer {
+    position: relative;
+    border-radius: 10px;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.layer-1 {
+    width: 120px;
+    height: 40px;
+    background: linear-gradient(45deg, #ff9a9e, #fecfef);
+    border-radius: 15px;
+    border: 2px solid #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.layer-2 {
+    width: 160px;
+    height: 50px;
+    background: linear-gradient(45deg, #a8edea, #fed6e3);
+    border-radius: 12px;
+    border: 2px solid #fff;
+    margin-top: -5px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.layer-3 {
+    width: 200px;
+    height: 60px;
+    background: linear-gradient(45deg, #ffecd2, #fcb69f);
+    border-radius: 10px;
+    border: 2px solid #fff;
+    margin-top: -5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.candles {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.candle {
+    width: 8px;
+    height: 25px;
+    background: linear-gradient(to bottom, #ff6b6b, #ee5a24);
+    border-radius: 4px;
+    position: relative;
+    animation: candleFlicker 2s ease-in-out infinite;
+}
+
+.candle::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 8px;
+    background: #ffd700;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flame 1.5s ease-in-out infinite;
+}
+
+.cake-plate {
+    width: 250px;
+    height: 15px;
+    background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border: 1px solid #dee2e6;
+}
+
+.birthday-message {
+    margin: 30px 0;
+    padding: 20px;
+    background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+    border-radius: 15px;
+    border: 3px solid #fff;
+}
+
+.birthday-message p {
+    color: #2d3436;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Sorry Page Styling */
+.sorry-message {
+    background: linear-gradient(45deg, #fd79a8, #fdcb6e);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 20px 0;
+    border: 3px solid #fff;
+}
+
+.sorry-message p {
+    color: #2d3436;
+    font-weight: 500;
+    margin: 15px 0;
+}
+
+/* Music Player Styling */
+.music-player {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 20px;
+    margin: 20px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.music-controls {
+    margin-top: 20px;
+}
+
+.control-btn {
+    background: #764ba2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background: #667eea;
+    transform: scale(1.05);
+}
+
+.music-info {
+    color: #764ba2;
+    font-style: italic;
+    margin: 15px 0;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.music-controls-flower {
+    margin: 20px 0;
+}
+
+.music-note {
+    color: #764ba2;
+    font-style: italic;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+/* Flower Styling */
+.flower-container {
+    position: relative;
+    margin: 40px auto;
+    width: 200px;
+    height: 300px;
+}
+
+.flower {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    animation: float 3s ease-in-out infinite;
+}
+
+.petal {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #9b59b6, #8e44ad);
+    border-radius: 50% 0;
+    transform-origin: 0 0;
+    animation: petalRotate 4s ease-in-out infinite;
+}
+
+.petal:nth-child(1) { transform: rotate(0deg); animation-delay: 0s; }
+.petal:nth-child(2) { transform: rotate(60deg); animation-delay: 0.5s; }
+.petal:nth-child(3) { transform: rotate(120deg); animation-delay: 1s; }
+.petal:nth-child(4) { transform: rotate(180deg); animation-delay: 1.5s; }
+.petal:nth-child(5) { transform: rotate(240deg); animation-delay: 2s; }
+.petal:nth-child(6) { transform: rotate(300deg); animation-delay: 2.5s; }
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: #f39c12;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
+}
+
+.stem {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    width: 8px;
+    height: 150px;
+    background: linear-gradient(to bottom, #27ae60, #2ecc71);
+    transform: translateX(-50%);
+    border-radius: 4px;
+}
+
+.leaf {
+    position: absolute;
+    top: 150px;
+    left: 30px;
+    width: 30px;
+    height: 15px;
+    background: #27ae60;
+    border-radius: 50% 0;
+    transform: rotate(-45deg);
+    animation: leafSway 3s ease-in-out infinite;
+}
+
+.leaf-right {
+    left: 70px;
+    transform: rotate(45deg);
+    animation-delay: 1.5s;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes cakeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes candleFlicker {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+
+@keyframes flame {
+    0%, 100% { 
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes petalRotate {
+    0%, 100% { transform: rotate(var(--rotation, 0deg)) scale(1); }
+    50% { transform: rotate(var(--rotation, 0deg)) scale(1.1); }
+}
+
+@keyframes leafSway {
+    0%, 100% { transform: rotate(var(--rotation, -45deg)); }
+    50% { transform: rotate(calc(var(--rotation, -45deg) + 10deg)); }
+}
+
+.leaf { --rotation: -45deg; }
+.leaf-right { --rotation: 45deg; }
